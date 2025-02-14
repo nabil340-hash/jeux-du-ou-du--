@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jeux du + ou du -</title>
+    <link rel="stylesheet" href="style.css">
+    <script scr="script.js" > </script>
+</head>
+<body>
+    <input type="number" id="saisie" placeholder="Devine le nombre">
+<button onclick="verifier()">Soumettre</button>
+<p id="message">Le nombre à deviner est entre 1 et 100.</p>
+<p id="essais"></p>
+<script>
+    // Fonction pour générer un nombre aléatoire entre min et max
+function nb_aleatoire(min, max) {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+var nb = nb_aleatoire(1, 100); // nb à deviner
+var cpt = 0; // nombre de coups
+var saisie;
+var msg = 'Le nombre à deviner est compris entre 1 et 100.';
+
+// Boucle jusqu'à ce que l'utilisateur devine le bon nombre
+do {
+    saisie = prompt(msg);
+    // Vérification si la saisie est un nombre
+    saisie = parseInt(saisie);
+
+    if (isNaN(saisie)) {
+        msg = "S'il vous plaît, entrez un nombre valide.";
+        continue; // Si ce n'est pas un nombre, recommence la boucle
+    }
+
+    cpt++; // Incrémenter le compteur à chaque essai
+
+    // Message à afficher au prochain tour
+    if (saisie > nb) {
+        msg = "C'est moins";
+    } else if (saisie < nb) {
+        msg = "C'est plus";
+    }
+
+} while (saisie != nb);
+
+alert("Bravo, tu as gagné en " + cpt + " coups !");
+</script>
+</body>
+</html>
