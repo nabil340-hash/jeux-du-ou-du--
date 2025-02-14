@@ -8,35 +8,31 @@
     <script scr="script.js" > </script>
 </head>
 <body>
-    <input type="number" id="saisie" placeholder="Devine le nombre">
-<button onclick="verifier()">Soumettre</button>
-<p id="message">Le nombre à deviner est entre 1 et 100.</p>
-<p id="essais"></p>
+
 <script>
-    // Fonction pour générer un nombre aléatoire entre min et max
+    
 function nb_aleatoire(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
 var nb = nb_aleatoire(1, 100); // nb à deviner
-var cpt = 0; // nombre de coups
+var cpt = 0; 
 var saisie;
 var msg = 'Le nombre à deviner est compris entre 1 et 100.';
 
-// Boucle jusqu'à ce que l'utilisateur devine le bon nombre
+
 do {
     saisie = prompt(msg);
-    // Vérification si la saisie est un nombre
+   
     saisie = parseInt(saisie);
 
     if (isNaN(saisie)) {
-        msg = "S'il vous plaît, entrez un nombre valide.";
-        continue; // Si ce n'est pas un nombre, recommence la boucle
+        msg = "S'il vous plaît, entrez un nombre valide entre 0 et 100.";
+        continue; 
     }
 
-    cpt++; // Incrémenter le compteur à chaque essai
+    cpt++; 
 
-    // Message à afficher au prochain tour
     if (saisie > nb) {
         msg = "C'est moins";
     } else if (saisie < nb) {
